@@ -19,12 +19,3 @@ server_scripts {
 shared_scripts {
     'shared/coords.lua'
 }
-
-ui_page './server/nui/index.html'
-
-files {
-    './server/nui/style.css',
-    './server/nui/index.html',
-    './server/nui/index.js',
-    './server/nui/images/*'
-}

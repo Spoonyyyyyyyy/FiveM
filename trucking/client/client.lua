@@ -90,22 +90,3 @@ RegisterNetEvent('cl_truckingZones', function()
     debugColor={255, 0 ,0}
   })
 end)
-
-
-RegisterKeyMapping('truckingMenu', 'Start Trucking Mission', 'keyboard', "f5")
-
-RegisterCommand('truckingMenu', function ()
-    SetNuiFocus(true, true)
-end)
-
-RegisterNetEvent('truckingPos', function ()
-  print("Test")
-end)
-
-RegisterNUICallback('trucking', function (data, cb)
-  if data.trucking == true then
-    cb({'Trucking Attemping to Start'})
-    SetNuiFocus(false, false)
-    TriggerServerEvent('sv_truckingStart')
-  end
-end)
