@@ -20,9 +20,8 @@ arenaOptions = {
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_13")',
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_14")',
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_15")',
-            'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_16")',
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_17")',
-        }, 
+        },
     },
         scifi = {
         scene = {
