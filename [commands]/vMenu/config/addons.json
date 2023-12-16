@@ -1,0 +1,23 @@
+{
+  "vehicles": [
+    
+  ],
+  "peds": [
+    
+  ],
+  "weapons": [
+    "WEAPON_fbiarb",
+    "WEAPON_HK416B",
+    "WEAPON_M700",
+    "WEAPON_mk18b",
+    "WEAPON_MP9a",
+    "WEAPON_MM4",
+    "WEAPON_MP5",
+    "WEAPON_P226",
+    "WEAPON_G17"
+  ],
+  "weapon_components": [
+    "weapon_component_name_1",
+    "weapon_component_name_2"
+  ]
+}

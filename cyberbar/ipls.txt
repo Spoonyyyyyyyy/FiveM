@@ -1,0 +1,77 @@
+#######################
+## Default Arena IP L##
+#######################
+
+RequestIpl("xs_arena_interior") -- Default
+
+#####################
+## Arena Crowd (Pick 1) ##
+#####################
+
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Crowd_A")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Crowd_B")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Crowd_C")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Crowd_D")
+
+########################
+## Arena Map (Pick 1) ##
+########################
+
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_Scene")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_Scene")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_Scene")
+
+##################################
+## Dystopian Map Props (Pick 1) ##
+##################################
+
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_01")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_02")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_03")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_04")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_05")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_06")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_07")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_08")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_09")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_10")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_11")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_12")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_13")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_14")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_15")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_16")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_17")
+
+##############################
+## Scifi Map Props (Pick 1) ##
+##############################
+
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_01")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_02")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_03")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_04")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_05")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_06")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_07")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_08")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_09")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_10")
+
+##################################
+## Wasteland Map Props (Pick 1) ##
+##################################
+
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_01")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_02")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_03")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_04")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_05")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_06")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_07")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_08")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_09")
+EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Wasteland_10")
+
+
+Once map is done unload all from client
