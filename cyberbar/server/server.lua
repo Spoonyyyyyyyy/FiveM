@@ -59,6 +59,31 @@ arenaOptions = {
     }
 }
 
+weaponOptions = {
+    'weapon_pistol_mk2',
+    'weapon_appistol',
+    'weapon_pistol50',
+    'weapon_microsmg',
+    'weapon_smg',
+    'weapon_smg_mk2',
+    'weapon_assaultsmg',
+    'weapon_machinepistol',
+    'weapon_minismg',
+    'weapon_assaultrifle',
+    'weapon_assaultrifle_mk2',
+    'weapon_carbinerifle',
+    'weapon_carbinerifle_mk2',
+    'weapon_advancedrifle',
+    'weapon_specialcarbine',
+    'weapon_specialcarbine_mk2',
+    'weapon_bullpuprifle',
+    'weapon_bullpuprifle_mk2',
+    'weapon_compactrifle',
+    'weapon_mg',
+    'weapon_combatmg',
+    'weapon_combatmg_mk2',
+}
+
 
 CreateThread(function ()
     CreateThread(drawBlip)
@@ -92,7 +117,7 @@ RegisterCommand('cyberbar', function(rawCommand, args)
         TriggerEvent('cyberbar:startGame')
     end
     if subCommand == 'teams' then 
-        for k, v in ipairs(alphaTeam) do
+        for k, v in ipairs(alphaTeam.playerId) do
             print(GetPlayerName(v))
         end
         print(#alphaTeam.playerId)
@@ -133,7 +158,10 @@ RegisterNetEvent('cyberbar:joinSeat', function (markerInfo, seatIndex)
     end
 
     TriggerClientEvent('cyberbar:sync', -1, seatIndex )
+end)
 
+AddEventHandler('cyberbar:startGame', function ()
+    local weaponRand = math.random(1, #weaponOptions)
 end)
 
 function selectArena()
