@@ -162,6 +162,20 @@ end)
 
 AddEventHandler('cyberbar:startGame', function ()
     local weaponRand = math.random(1, #weaponOptions)
+    local selectedWeapon = weaponOptions[weaponRand]
+    for _, v in pairs(alphaTeam.playerId) do
+        SetCurrentPedWeapon(GetPlayerPed(v), selectedWeapon, true)
+    end
+    for _, v in pairs(betaTeam.playerId) do
+        SetCurrentPedWeapon(GetPlayerPed(v), selectedWeapon, true)
+    end
+end)
+
+AddEventHandler('baseevents:onPlayerDied', function ()
+    local playerDied = source
+    if playerDied ~= alphaTeam.playerId or betaTeam.playerId then
+        return
+    end
 end)
 
 function selectArena()
