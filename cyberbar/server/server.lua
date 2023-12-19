@@ -173,7 +173,7 @@ end)
 
 AddEventHandler('baseevents:onPlayerDied', function ()
     local playerDied = source
-    if playerDied ~= alphaTeam.playerId or betaTeam.playerId then
+    if playerDied ~= alphaTeam.playerId or betaTeam.playerId and currentGame ~= true then
         return
     end
 end)
