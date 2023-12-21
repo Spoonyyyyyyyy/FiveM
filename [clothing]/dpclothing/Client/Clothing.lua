@@ -51,21 +51,10 @@ local Drawables = {
 		Table = {Standalone = true, Male = 0, Female = 0 },
 		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
 	},
-	["Bag"] = {
-		Drawable = 5,
-		Table = Variations.Bags,
-		Emote = {Dict = "anim@heists@ornate_bank@grab_cash", Anim = "intro", Move = 51, Dur = 1600}
-	},
 	["Mask"] = {
 		Drawable = 1,
 		Table = {Standalone = true, Male = 0, Female = 0 },
 		Emote = {Dict = "mp_masks@standard_car@ds@", Anim = "put_on_mask", Move = 51, Dur = 800}
-	},
-	["Hair"] = {
-		Drawable = 2,
-		Table = Variations.Hair,
-		Remember = true,
-		Emote = {Dict = "clothingtie", Anim = "check_out_a", Move = 51, Dur = 2000}
 	},
 }
 
@@ -87,7 +76,7 @@ local Extras = {
 		Table = {Standalone = true, Male = 61, Female = 14},
 		Emote = {Dict = "re@construction", Anim = "out_of_breath", Move = 51, Dur = 1300}
 	},
-	["Bagoff"] = {
+	["Bag"] = {
 		Drawable = 5,
 		Table = {Standalone = true, Male = 0, Female = 0},
 		Emote = {Dict = "clothingtie", Anim = "try_tie_negative_a", Move = 51, Dur = 1200}
@@ -199,7 +188,7 @@ function ToggleClothing(which, extra)
 				end
 			end
 		end
-		Notify(Lang("NoVariants")) return
+		return
 	else
 		if not LastEquipped[which] then
 			if Cur.Drawable ~= Table then 
@@ -236,7 +225,7 @@ function ToggleClothing(which, extra)
 			return true
 		end
 	end
-	Notify(Lang("AlreadyWearing")) return false
+	return false
 end
 
 function ToggleProps(which)
@@ -259,7 +248,7 @@ function ToggleProps(which)
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, Last.Prop, Last.Texture, true) end) LastEquipped[which] = false return true
 			end
 		end
-		Notify(Lang("NothingToRemove")) return false
+		return false
 	else
 		local Gender = IsMpPed(Ped)
 		if not Gender then Notify(Lang("NotAllowedPed")) return false end -- We dont really allow for variants on ped models, Its possible, but im pretty sure 95% of ped models dont really have variants.
@@ -269,7 +258,7 @@ function ToggleProps(which)
 				PlayToggleEmote(Prop.Emote.On, function() SetPedPropIndex(Ped, Prop.Prop, v, Cur.Texture, true) end) return true
 			end
 		end
-		Notify(Lang("NoVariants")) return false
+		return false
 	end
 end
 
@@ -333,7 +322,7 @@ function DevTestVariants(d) -- If debug mode is enabled we can try all the varia
 			TestThreadActive = false
 		end)
 	else
-		Notify("Already testing variants.")
+		return
 	end
 end
 

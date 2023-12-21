@@ -65,13 +65,6 @@ Config.Commands = {
 		Button = 3,
 		Name = Lang("Visor")
 	},
-	[Lang("BAG")] = {
-		Func = function() ToggleClothing("Bag") end,
-		Sprite = "bag",
-		Desc = Lang("Bag2"),
-		Button = 8,
-		Name = Lang("Bag")
-	},
 	[Lang("SHOES")] = {
 		Func = function() ToggleClothing("Shoes") end,
 		Sprite = "shoes",
@@ -85,13 +78,6 @@ Config.Commands = {
 		Desc = string.format(Lang("TakeOffOn"), string.lower(Lang("Vest"))),
 		Button = 14,
 		Name = Lang("Vest")
-	},
-	[Lang("HAIR")] = {
-		Func = function() ToggleClothing("Hair") end,
-		Sprite = "hair",
-		Desc = Lang("Hair2"),
-		Button = 7,
-		Name = Lang("Hair")
 	},
 	[Lang("HAT")] = {
 		Func = function() ToggleProps("Hat") end,
@@ -178,22 +164,13 @@ Config.ExtraCommands = {
 		OffsetY = 0.2,
 		Rotate = true
 	},
-	["clothingexit"] = {
-		Func = function() MenuOpened = false end,
-		Sprite = "exit",
-		Desc = "",
-		Name = Lang("Exit"),
-		OffsetX = 0.12,
-		OffsetY = -0.2,
-		Enabled = Config.GUI.Toggle
-	},
-	[Lang("BAGOFF")] = {
-		Func = function() ToggleClothing("Bagoff", true) end,
-		Sprite = "bagoff",
+	[Lang("BAG")] = {
+		Func = function() ToggleClothing("Bag", true) end,
+		Sprite = "bag",
 		SpriteFunc = function()
 			local Bag = GetPedDrawableVariation(PlayerPedId(), 5)
-			local BagOff = LastEquipped["Bagoff"]
-			if LastEquipped["Bagoff"] then
+			local BagOff = LastEquipped["Bag"]
+			if LastEquipped["Bag"] then
 				if Bags[BagOff.Drawable] then
 					return "bagoff"
 				else
