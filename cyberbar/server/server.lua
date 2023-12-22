@@ -173,8 +173,41 @@ end)
 
 AddEventHandler('baseevents:onPlayerDied', function ()
     local playerDied = source
+    local playerName = GetPlayerName(playerDied)
     if playerDied ~= alphaTeam.playerId or betaTeam.playerId and currentGame ~= true then
         return
+    end
+    for _, v in pairs(alphaTeam.playerId) do
+        local alphaPlayer = v
+        if playerDied == alphaPlayer then 
+            table.insert(alphaTeam.playersKilled, alphaPlayer)
+            for _, k in pairs(alphaTeam.playerId and betaTeam.playerId) do 
+                TriggerClientEvent('chat:addMessage', k, {
+                    color = {255, 0, 0},
+                    multiline = false,
+                    args = {'Cyberbar',playerName .. 'has been killed!'}
+                })
+            end
+            if #alphaTeam.playersKilled == #alphaTeam.playerId then 
+                TriggerEvent('cyberbar:roundnd')
+            end
+        end
+    end
+    for _, l in pairs(betaTeam.playerId) do 
+        local betaPlayer = l 
+        if playerDied == betaPlayer then 
+            table.insert(betaTeam.playersKilled, betaPlayer)
+            for _, m in pairs(alphaTeam.playerId and betaTeam.playerId) do 
+                TriggerClientEvent('chat:addMessage', m, {
+                    color = {255, 0, 0},
+                    multiline = false,
+                    args = {'Cyberbar',playerName .. 'has been killed!'}
+                })
+            end
+            if #betaTeam.playersKilled == #betaTeam.playersKilled then 
+                TriggerEvent('cyberbar:roundEnd')
+            end
+        end
     end
 end)
 
