@@ -23,7 +23,7 @@ arenaOptions = {
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Dystopian_17")',
         },
     },
-        scifi = {
+    scifi = {
         scene = {
             'EnableInteriorProp(GetInteriorAtCoords(2800.000, -3800.000, 100.000), "Set_Scifi_Scene")'
         },
@@ -163,17 +163,20 @@ end)
 AddEventHandler('cyberbar:startGame', function ()
     local weaponRand = math.random(1, #weaponOptions)
     local selectedWeapon = weaponOptions[weaponRand]
+    print(selectedWeapon)
     for _, v in pairs(alphaTeam.playerId) do
-        SetCurrentPedWeapon(GetPlayerPed(v), selectedWeapon, true)
+        SetCurrentPedWeapon(GetPlayerPed(v), GetHashKey(string.upper(selectedWeapon)), true)
     end
-    for _, v in pairs(betaTeam.playerId) do
-        SetCurrentPedWeapon(GetPlayerPed(v), selectedWeapon, true)
+    for _, a in pairs(betaTeam.playerId) do
+        SetCurrentPedWeapon(GetPlayerPed(a), GetHashKey(string.upper(selectedWeapon)), true)
     end
 end)
 
-AddEventHandler('baseevents:onPlayerDied', function ()
+
+RegisterNetEvent('baseevents:onPlayerDied', function ()
     local playerDied = source
     local playerName = GetPlayerName(playerDied)
+    print(playerName)
     if playerDied ~= alphaTeam.playerId or betaTeam.playerId and currentGame ~= true then
         return
     end
@@ -185,11 +188,11 @@ AddEventHandler('baseevents:onPlayerDied', function ()
                 TriggerClientEvent('chat:addMessage', k, {
                     color = {255, 0, 0},
                     multiline = false,
-                    args = {'Cyberbar',playerName .. 'has been killed!'}
+                    args = {'Cyberbar', playerName .. 'has been killed!'}
                 })
             end
             if #alphaTeam.playersKilled == #alphaTeam.playerId then 
-                TriggerEvent('cyberbar:roundnd')
+                TriggerEvent('cyberbar:roundEnd')
             end
         end
     end
