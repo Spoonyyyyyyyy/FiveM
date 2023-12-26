@@ -115,6 +115,11 @@ RegisterCommand('cyberbar', function(rawCommand, args)
     end
     if subCommand == 'startGame' then
         TriggerEvent('cyberbar:startGame')
+        SendNUIMessage({
+            type = 'players',
+            alphaTeamData = alphaTeam.playerId,
+            betaTeamData = betaTeam.playerId
+        })
     end
     if subCommand == 'teams' then 
         for k, v in ipairs(alphaTeam.playerId) do
@@ -130,10 +135,10 @@ RegisterCommand('cyberbar', function(rawCommand, args)
         local unloadProps = string.gsub(tostring(selectedProps), searchString, replacementString)
         TriggerClientEvent('cyberbar:unloadIpl', -1, unloadArena, unloadProps)
         TriggerClientEvent('cyberbar:endGame', -1)
-        for k, v in ipairs(alphaTeam) do
+        for k, v in ipairs(alphaTeam.playerId) do
             SetEntityCoords(GetPlayerPed(v), 335.6321, -904.3586, 29.25145, true, false, false, false)
         end
-        for k, v in ipairs(betaTeam) do
+        for k, v in ipairs(betaTeam.playerId) do
             SetEntityCoords(GetPlayerPed(v), 335.6321, -904.3586, 29.25145, true, false, false, false)
         end
         alphaTeam = wipeAlphaTeam()

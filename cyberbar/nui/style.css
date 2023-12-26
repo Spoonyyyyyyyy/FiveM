@@ -1,0 +1,52 @@
+html {
+    width: 960px;
+    transform: translateX(50%);
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+
+}
+.title {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+.teams {
+    display: grid;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+.alpha {
+    text-align: left;
+}
+.beta {
+    text-align: right;
+}
+.gameOptionsMain {
+    text-align: center;
+    color: white;
+}
+.gameOptions {
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid: 20px;
+    text-align: center;
+    padding: 20px;
+}
+h3 {
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(60, 60, 60, 100)
+}
+
+.background {
+    background-color: rgb(37, 37, 37);
+    border-radius: 20px;
+}
