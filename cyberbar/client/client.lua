@@ -124,9 +124,3 @@ end)
 function resetTable()
     return defaultSeatMarkers
 end
-
-RegisterCommand('cyberbarmenu', function ()
-    SendNUIMessage({
-        type = 'openMenu'
-    })
-end)
