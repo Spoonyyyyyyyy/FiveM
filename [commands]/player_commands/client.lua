@@ -38,21 +38,3 @@ RegisterCommand('tp', function(source, args)
     SetEntityCoords(playerPed, x, y, z, true, false, false, true)
   end
 end)
-
-
-RegisterCommand('car', function (source, args)
-  local requestedVehicle = args[1] or adder
-  
-  RequestModel(requestedVehicle)
-    while not HasModelLoaded(requestedVehicle) do 
-    Citizen.Wait(500)
-    RequestModel(requestedVehicle)
-  end
-  local playerPed = PlayerPedId()
-  local playerCoords = GetEntityCoords(playerPed)
-  print(playerCoords)
-  local spawnedVehicle = CreateVehicle(GetHashKey(requestedVehicle), playerCoords.x, playerCoords.y, playerCoords.z, GetEntityHeading(playerPed), true, false)
-  SetPedIntoVehicle(playerPed, spawnedVehicle, -1)
-  SetModelAsNoLongerNeeded(spawnedVehicle)
-  SetEntityAsNoLongerNeeded(spawnedVehicle)
-end)

@@ -1,0 +1,6 @@
+RegisterNetEvent('spawnVehicle', function (requestedVehicle)
+    local requestedVehicleHash = GetHashKey(requestedVehicle)
+    local spawnCoords = GetEntityCoords(GetPlayerPed(source))
+    local spawnedVehicle = CreateVehicle(requestedVehicleHash, spawnCoords.x, spawnCoords.y, spawnCoords.z, GetEntityHeading(GetPlayerPed(source)), true, false)
+    SetPedIntoVehicle(GetPlayerPed(source), spawnedVehicle, -1)
+end)

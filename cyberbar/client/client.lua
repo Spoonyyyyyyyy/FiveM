@@ -78,7 +78,7 @@ end)
 
 RegisterNetEvent('cyberbar:sync', function (seatIndex)
     print(seatIndex)
-    if seatIndex == nil then
+    if seatIndex == nil or seatMarkers[seatIndex].status == true then
         return
     end
     seatMarkers[seatIndex].status = true

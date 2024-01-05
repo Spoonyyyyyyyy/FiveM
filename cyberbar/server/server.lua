@@ -115,11 +115,6 @@ RegisterCommand('cyberbar', function(rawCommand, args)
     end
     if subCommand == 'startGame' then
         TriggerEvent('cyberbar:startGame')
-        SendNUIMessage({
-            type = 'players',
-            alphaTeamData = alphaTeam.playerId,
-            betaTeamData = betaTeam.playerId
-        })
     end
     if subCommand == 'teams' then 
         for k, v in ipairs(alphaTeam.playerId) do
@@ -162,7 +157,7 @@ RegisterNetEvent('cyberbar:joinSeat', function (markerInfo, seatIndex)
         table.insert(betaTeam.playerId, playerSrc)
     end
 
-    TriggerClientEvent('cyberbar:sync', -1, seatIndex )
+    TriggerClientEvent('cyberbar:syncSeats', -1, seatIndex)
 end)
 
 AddEventHandler('cyberbar:startGame', function ()
@@ -258,3 +253,7 @@ function wipeBetaTeam()
     }
     return betaBlank
 end
+
+AddEventHandler('onResourceStop', function ()
+    TriggerEvent('cyberbar:endGame')
+end)
