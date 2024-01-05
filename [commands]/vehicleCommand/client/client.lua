@@ -13,18 +13,34 @@ RegisterCommand('car', function (rawCommands, args)
 end)
 
 RegisterCommand('vehicleMods', function ()
+    print(getVehicleMods())
+end)
+    
+RegisterCommand('saveVehicle', function ()
+    
+end)
+
+function getVehicleMods()
     local currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
-    currentVehicleMods = {}
+    local currentVehicleMods = {
+        suspension = {},
+        armour = {},
+        transmission = {},
+        turbo = {},
+        lights = {},
+        engine = {},
+        brakes = {}
+    }
     for k, vehicleMods in ipairs(vehicleMods) do
         local modName = vehicleMods.modName
         local modId = vehicleMods.modId
         local modValue = GetVehicleMod(currentVehicle, modId)
         print(modName, modValue)
-        table.insert(currentVehicleMods, modValue)
+        table.insert(currentVehicleMods.modName, modValue)
     end
-    print(json.encode(currentVehicleMods))
-end)
+    local primaryVehicleColour = GetVehicleCustomPrimaryColour(currentVehicle)
+    local secondaryVehicleColour = GetVehicleCustomSecondaryColour(currentVehicle)
+    print(primaryVehicleColour, secondaryVehicleColour)
+    return currentVehicleMods
+end
 
-RegisterCommand('saveVehicle', function ()
-    
-end)
