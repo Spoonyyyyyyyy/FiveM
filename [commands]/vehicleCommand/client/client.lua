@@ -1,7 +1,7 @@
 
 
 RegisterCommand('car', function (rawCommands, args)
-    local requestedVehicle = args[1] or adder
+    local requestedVehicle = args[1] or 'adder'
     if not args[1] then 
         TriggerEvent('chat:addMessage', {
             color = {255, 0, 0},
@@ -13,34 +13,37 @@ RegisterCommand('car', function (rawCommands, args)
 end)
 
 RegisterCommand('vehicleMods', function ()
-    print(getVehicleMods())
-end)
-    
-RegisterCommand('saveVehicle', function ()
-    
-end)
-
-function getVehicleMods()
+    local currentVehicleMods = {}
     local currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
-    local currentVehicleMods = {
-        suspension = {},
-        armour = {},
-        transmission = {},
-        turbo = {},
-        lights = {},
-        engine = {},
-        brakes = {}
-    }
     for k, vehicleMods in ipairs(vehicleMods) do
         local modName = vehicleMods.modName
         local modId = vehicleMods.modId
         local modValue = GetVehicleMod(currentVehicle, modId)
         print(modName, modValue)
-        table.insert(currentVehicleMods.modName, modValue)
+        table.insert(currentVehicleMods, tostring(modValue))
     end
     local primaryVehicleColour = GetVehicleCustomPrimaryColour(currentVehicle)
     local secondaryVehicleColour = GetVehicleCustomSecondaryColour(currentVehicle)
     print(primaryVehicleColour, secondaryVehicleColour)
-    return currentVehicleMods
-end
-
+    print('----------------------')
+    for a, b in pairs(currentVehicleMods) do 
+        print(a, b) 
+    end
+    print(currentVehicle)
+end)
+    
+RegisterCommand('saveVehicle', function ()
+    local currentVehicleMods = {}
+    local currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+    for k, vehicleMods in ipairs(vehicleMods) do
+        local modName = vehicleMods.modName
+        local modId = vehicleMods.modId
+        local modValue = GetVehicleMod(currentVehicle, modId)
+        print(modName, modValue)
+        table.insert(currentVehicleMods, tostring(modValue))
+    end
+    local primaryVehicleColour = GetVehicleCustomPrimaryColour(currentVehicle)
+    local secondaryVehicleColour = GetVehicleCustomSecondaryColour(currentVehicle)
+    print(currentVehicle)
+    print(primaryVehicleColour, secondaryVehicleColour)
+end)
