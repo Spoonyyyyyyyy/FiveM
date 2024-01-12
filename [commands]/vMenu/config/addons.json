@@ -14,7 +14,8 @@
     "WEAPON_MM4",
     "WEAPON_MP5",
     "WEAPON_P226",
-    "WEAPON_G17"
+    "WEAPON_G17",
+    "WEAPON_SIGMCX"
   ],
   "weapon_components": [
     "weapon_component_name_1",

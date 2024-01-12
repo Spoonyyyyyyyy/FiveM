@@ -8,7 +8,7 @@ CreateThread(function ()
         local rockCoords = rockData.coords
         local rockModel = rockData.model
         print(k, rockData)
-        local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, false, false)
+        local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
         table.insert(respawnObjects.objectId, spawnObject)
     end
 end)
@@ -16,9 +16,6 @@ end)
 RegisterNetEvent('main_mining:checkDistance', function (rockIndex, playerCoords)
     print(rockIndex)
     print(playerCoords)
-    if rockIndex or playerCoords == nil then 
-        return 
-    end
     local rockCoords = rockData[rockIndex].coords
     print(rockCoords)
     if #rockCoords - #playerCoords >1.5 then 
@@ -26,18 +23,21 @@ RegisterNetEvent('main_mining:checkDistance', function (rockIndex, playerCoords)
     end
 end)
 
---[[ AddEventHandler('onResourceStop', function ()
-    for k, object in ipairs(rockData) do 
-        entity = object.entity
-    SetObjectAsNoLongerNeeded(object.entity)
-    DeleteObject(entity)
+AddEventHandler('onResourceStop', function ()
+    for k, objects in pairs(respawnObjects.objectId) do
+        print(k, objects)
+        objectId = objects
+        print(DoesEntityExist(objectId))
+        DeleteEntity(objectId)
     end
  end)
---]]
+
+
 RegisterCommand('removeObjects', function ()
     for k, objects in pairs(respawnObjects.objectId) do
         print(k, objects)
         objectId = objects
-        TriggerClientEvent('main_mining:removeObjects', -1, objectId)
+        print(DoesEntityExist(objectId))
+        DeleteEntity(objectId)
     end
 end)

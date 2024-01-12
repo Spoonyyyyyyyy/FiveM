@@ -16,7 +16,6 @@ CreateThread(function ()
     while true do
         Citizen.Wait(1)
         if miningActive then
-            Citizen.Wait(1)
             if IsControlJustPressed(0, 58) then
                 for i, rockData in ipairs(rockData) do 
                     local rockCoords = rockData.coords
@@ -27,16 +26,9 @@ CreateThread(function ()
                     print(rockIndex, distanceRock)
                     if distanceRock <1.5 then
                         TriggerServerEvent('main_mining:checkDistance', i, playerCoords)
-                        return
                     end
                 end
             end
         end
     end
-end)
-
-RegisterNetEvent('main_mining:removeObjects', function (objectId)
-    print(objectId)
-    SetObjectAsNoLongerNeeded(objectId)
-    DeleteObject(objectId)
 end)
