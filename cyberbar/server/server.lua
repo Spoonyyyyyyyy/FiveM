@@ -142,6 +142,11 @@ RegisterCommand('cyberbar', function(rawCommand, args)
     end
 end)
 
+RegisterCommand('listteam', function ()
+    for a, b in pairs(alphaTeam.playerId) do
+        print(a, b)
+    end
+end)
 
 RegisterNetEvent('cyberbar:joinSeat', function (markerInfo, seatIndex)
     if markerInfo.status == false or nil then
@@ -166,6 +171,7 @@ AddEventHandler('cyberbar:startGame', function ()
     print(selectedWeapon)
     for _, v in pairs(alphaTeam.playerId) do
         SetCurrentPedWeapon(GetPlayerPed(v), GetHashKey(string.upper(selectedWeapon)), true)
+        SetEntityCoords(GetPlayerPed(v), 2955.98, -3810.304, 139.9972)
     end
     for _, a in pairs(betaTeam.playerId) do
         SetCurrentPedWeapon(GetPlayerPed(a), GetHashKey(string.upper(selectedWeapon)), true)
