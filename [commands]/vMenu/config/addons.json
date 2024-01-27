@@ -3,7 +3,13 @@
     
   ],
   "peds": [
-    
+    "shadowcompanysoldier",
+    "shadowcompanysniper",
+    "shadowcompanyelite",
+    "shadowcompanyjuggernaut",
+    "shadowcompanysoldier2",
+    "shadowcompanysoldier3"
+
   ],
   "weapons": [
     "WEAPON_fbiarb",

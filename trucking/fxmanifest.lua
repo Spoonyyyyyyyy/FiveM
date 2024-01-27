@@ -17,5 +17,5 @@ server_scripts {
 }
 
 shared_scripts {
-    'shared/coords.lua'
+    'shared/config.lua'
 }

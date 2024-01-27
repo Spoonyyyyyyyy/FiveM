@@ -1,63 +1,55 @@
+-- Initial Spawning of Entities
+
 CreateThread(function ()
-    respawnObjects = {
-        objectId = {},
-        gameTime = {},
-        rockIndex= {}
-    }
     for k, rockData in ipairs(rockData) do
-        local rockCoords = rockData.coords
-        local rockModel = rockData.model
+        local rockCoords, rockModel = rockData.coords, rockData.model
         print(k, rockData)
         local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
-        table.insert(respawnObjects.objectId, spawnObject)
-        table.insert(respawnObjects.gameTime, GetGameTimer())
-        table.insert(respawnObjects, i)
+        rockData.entity, rockData.spawned = spawnObject, true
     end
-    while true do 
-        Citizen.wait(1000)
-        for _, tableData in ipairs(respawnObjects) do 
-            local objectId, gameTimer, rockIndex = tableData.objectId, tableData.gameTime, tableData.rockIndex
-            local currentGameTimer = GetGameTimer()
-        
-            if math.floor(math.abs(currentGameTimer - gameTimer) / 1000) < rockData[rockIndex].respawnTime and IsEntityAtRockCoord(objectId, rockIndex) then
-                print(rockData[rockIndex].label .. ' has respawned at ' .. rockData[rockIndex].label)
+end)
+
+-- Detection for if a rock isnt spawned every second and if it should be respawned.
+CreateThread(function ()
+    while true do
+        Citizen.Wait(1000)
+        for _, v in ipairs(rockData) do 
+            local rockModel, rockCoords = v.model, v.coords
+            if not v.spawned and math.floor(v.spawnTime / 1000) > v.respawnTime then
+                    local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
+                    v.entity, v.spawned = spawnObject, true
             end
         end
-        
-        function IsEntityAtRockCoord(objectId, rockIndex)
-            local rockCoords = rockData[rockIndex].coords
-            return IsEntityAtCoord(objectId, rockCoords.x, rockCoords.y, rockCoords.z, 1.0, 1.0, 1.0, 0, 1, 0)
-        end  
     end
 end)
 
-RegisterNetEvent('main_mining:checkDistance', function (rockIndex, playerCoords)
-    print(rockIndex)
-    print(playerCoords)
+-- Net Event from client to check which rock is being mined.
+
+RegisterNetEvent('main_mining:checkDistance', function (rockIndex)
     local rockCoords = rockData[rockIndex].coords
-    print(rockCoords)
-    if #rockCoords - #playerCoords >1.5 then 
-        print(GetPlayerName(source), 'attempted to mine' .. rockData[rockIndex].label, 'at' ,rockData[rockIndex].coords)
+    local playerCoords = GetEntityCoords(GetPlayerPed(source))
+    print("Rock Index: ".. rockIndex, "Player Coords: " .. playerCoords, "Rock Coords: " .. rockCoords)
+    if #rockCoords - #playerCoords <3.0 then
+        print(GetPlayerName(source) .. ' attempted to mine ' .. rockData[rockIndex].label .. ' at ' .. rockData[rockIndex].coords)
+        if DoesEntityExist(rockData[rockIndex].entity) then
+            rockData[rockIndex].spawned, rockData[rockIndex].spawnTime = false, GetGameTimer()
+            DeleteEntity(rockData[rockIndex].entity)
+            local playerIdentifier, playerName = GetPlayerIdentifierByType(source, 'license'), GetPlayerName(source)
+            MySQL.insert('INSERT INTO mining_logs (identifier, player_name, label) VALUES (?, ?, ?)', {
+                playerIdentifier,
+                playerName,
+                rockData[rockIndex].label
+            })
+        end
     end
 end)
 
-AddEventHandler('onResourceStop', function ()
-    for k, objects in pairs(respawnObjects.objectId) do
+RegisterCommand('removeObjects', function ()
+    for k, objects in pairs(rockData) do
         print(k, objects)
-        objectId = objects
+        objectId = objects.entity
         print(DoesEntityExist(objectId))
         DeleteEntity(objectId)
     end
- end)
-
-
-RegisterCommand('removeObjects', function ()
-    for k, objects in pairs(respawnObjects.objectId) do
-        print(k, objects)
-        objectId = objects
-        if DoesEntityExist(objectID) then 
-            print(DoesEntityExist(objectId))
-            DeleteEntity(objectId)
-        end
-    end
 end)
+

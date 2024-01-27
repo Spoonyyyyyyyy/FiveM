@@ -24,8 +24,9 @@ CreateThread(function ()
                     local distanceRock = GetDistanceBetweenCoords(rockCoords.x, rockCoords.y, rockCoords.z, playerCoords.x, playerCoords.y, playerCoords.z)
                     Citizen.Wait(500)
                     print(rockIndex, distanceRock)
-                    if distanceRock <1.5 then
+                    if distanceRock <3.0 then
                         TriggerServerEvent('main_mining:checkDistance', i, playerCoords)
+                        print("Rock Index: " .. rockIndex, "Distance from Rock: " .. distanceRock)
                     end
                 end
             end
