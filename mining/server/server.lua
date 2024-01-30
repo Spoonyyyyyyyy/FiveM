@@ -1,6 +1,7 @@
 -- Initial Spawning of Entities
 
 CreateThread(function ()
+    Citizen.Wait(2000)
     for k, rockData in ipairs(rockData) do
         local rockCoords, rockModel = rockData.coords, rockData.model
         print(k, rockData)
@@ -9,15 +10,18 @@ CreateThread(function ()
     end
 end)
 
--- Detection for if a rock isnt spawned every second and if it should be respawned.
+-- Detection for if a rock isn't spawned every second and if it should be respawned.
 CreateThread(function ()
     while true do
         Citizen.Wait(1000)
         for _, v in ipairs(rockData) do 
             local rockModel, rockCoords = v.model, v.coords
-            if not v.spawned and math.floor(v.spawnTime / 1000) > v.respawnTime then
-                    local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
-                    v.entity, v.spawned = spawnObject, true
+            if v.spawnTime == nil then 
+                break -- Use break instead of return to exit the loop
+            end
+            if not v.spawned and math.floor((GetGameTimer() / 1000) - (v.spawnTime / 1000)) > v.respawnTime then
+                local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
+                v.entity, v.spawned = spawnObject, true
             end
         end
     end
@@ -39,7 +43,25 @@ RegisterNetEvent('main_mining:checkDistance', function (rockIndex)
                 playerIdentifier,
                 playerName,
                 rockData[rockIndex].label
-            })
+            }, function ()
+                MySQL.scalar('SELECT mining_xp FROM jobs WHERE identifier = ?', {
+                    playerIdentifier
+                }, function (miningXp)
+                    if not miningXp then 
+                        MySQL.insert('INSERT INTO jobs (identifier, player_name, mining_xp) VALUES (?, ?, ?)', {
+                            playerIdentifier,
+                            playerName,
+                            rockData[rockIndex].xp
+                        })
+                    else
+                        local updateXp = miningXp + rockData[rockIndex].xp
+                        MySQL.update('UPDATE jobs SET mining_xp = ? WHERE identifier = ?', {
+                            updateXp,
+                            playerIdentifier
+                        })
+                    end
+                end)
+            end)
         end
     end
 end)
@@ -50,6 +72,14 @@ RegisterCommand('removeObjects', function ()
         objectId = objects.entity
         print(DoesEntityExist(objectId))
         DeleteEntity(objectId)
+    end
+end)
+
+RegisterCommand('tableValue', function ()
+    for l, p in ipairs(rockData) do
+        for o, r in pairs(rockData[l]) do 
+        print(o, r)
+        end
     end
 end)
 
