@@ -20,5 +20,3 @@ function Draw3DText(x, y, z, scl_factor, text, red, green, blue, alpha)
       DrawText(_x, _y)
     end
   end
-
-
