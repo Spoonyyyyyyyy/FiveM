@@ -33,7 +33,7 @@ CreateThread(function ()
     if distance < 2.5 then
       Draw3DText(truckBlipLocation.x, truckBlipLocation.y, truckBlipLocation.z + 0.5, 1.0, "Spawn Mule", 255, 255, 255, 255)
       if IsControlJustPressed(2, 47) then
-        print('Control Pressed')
+        TriggerServerEvent('trucking:spawnMule')
       end
     end
   end
