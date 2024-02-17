@@ -17,7 +17,7 @@ CreateThread(function ()
         for _, v in ipairs(rockData) do 
             local rockModel, rockCoords = v.model, v.coords
             if v.spawnTime == nil then 
-                break -- Use break instead of return to exit the loop
+                break 
             end
             if not v.spawned and math.floor((GetGameTimer() / 1000) - (v.spawnTime / 1000)) > v.respawnTime then
                 local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
