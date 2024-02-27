@@ -3,6 +3,7 @@ RegisterCommand('coords', function()
   local playerPed = PlayerPedId()
   local playerPos = GetEntityCoords(playerPed)
   print(playerPos)
+  lib.setClipboard(playerPos)
 end)
 
 RegisterCommand('heading', function()
