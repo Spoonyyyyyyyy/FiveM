@@ -1,23 +1,51 @@
-.color-0{color: #ffffff;}
-.color-1{color: #ff4444;}
-.color-2{color: #99cc00;}
-.color-3{color: #ffbb33;}
-.color-4{color: #0099cc;}
-.color-5{color: #33b5e5;}
-.color-6{color: #aa66cc;}
-.color-8{color: #cc0000;}
-.color-9{color: #cc0068;}
+.color-0 {
+  color: #ffffff;
+}
+.color-1 {
+  color: #ff4444;
+}
+.color-2 {
+  color: #99cc00;
+}
+.color-3 {
+  color: #ffbb33;
+}
+.color-4 {
+  color: #0099cc;
+}
+.color-5 {
+  color: #33b5e5;
+}
+.color-6 {
+  color: #aa66cc;
+}
+.color-8 {
+  color: #cc0000;
+}
+.color-9 {
+  color: #cc0068;
+}
 
-.gameColor-w{color: #ffffff;}
-.gameColor-r{color: #ff4444;}
-.gameColor-g{color: #99cc00;}
-.gameColor-y{color: #ffbb33;}
-.gameColor-b{color: #33b5e5;}
+.gameColor-w {
+  color: #ffffff;
+}
+.gameColor-r {
+  color: #ff4444;
+}
+.gameColor-g {
+  color: #99cc00;
+}
+.gameColor-y {
+  color: #ffbb33;
+}
+.gameColor-b {
+  color: #33b5e5;
+}
 
 /* todo: more game colors */
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -31,7 +59,7 @@ em {
 }
 
 #app {
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
@@ -39,15 +67,13 @@ em {
 
 .chat-window {
   position: absolute;
-  top: 1.5%;
+  top: 2%;
   left: 0.8%;
   width: 38%;
   height: 22%;
   max-width: 1000px;
-  background-color: rgba(52, 73, 94, 0.7);
   -webkit-animation-duration: 2s;
 }
-
 
 .chat-messages {
   position: relative;
@@ -59,11 +85,10 @@ em {
   overflow-y: hidden;
 }
 
-
 .chat-input {
   font-size: 1.65vh;
   position: absolute;
-
+  background-color: transparent;
   top: 23.8%;
   left: 0.8%;
   width: 38%;
@@ -75,8 +100,8 @@ em {
   position: relative;
   display: flex;
   align-items: stretch;
+  background-color: transparent;
   width: 100%;
-  background-color: rgba(44, 62, 80, 1.0);
 }
 
 .chat-hide-state {
@@ -114,8 +139,9 @@ textarea {
   background-color: transparent;
 }
 
-textarea:focus, input:focus {
-    outline: none;
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 .msg {
@@ -135,7 +161,7 @@ textarea:focus, input:focus {
   font-size: 1.65vh;
   box-sizing: border-box;
   color: white;
-  background-color: rgba(44, 62, 80, 1.0);
+  background-color: rgba(44, 62, 80, 1);
   width: 100%;
 }
 
