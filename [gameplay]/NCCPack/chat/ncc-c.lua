@@ -157,9 +157,9 @@ if EnableStandChat == true then
 	  local myID = PlayerId()
 	  local pID = GetPlayerFromServerId(id)
 	  if pID == myID then
-		TriggerEvent('chatMessage', "^r" .. name .. " (#"..id..")", {128, 128, 128}, "^r " .. message)
+		TriggerEvent('chatMessage', "^2" .. name .. " (#"..id..")", {128, 128, 128}, "^* " .. message)
 	  elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(myID)), GetEntityCoords(GetPlayerPed(pID)), true) < 19.999 then
-		TriggerEvent('chatMessage', "^r" .. name .. " (#"..id..")", {128, 128, 128}, "^r " .. message)
+		TriggerEvent('chatMessage', "^2" .. name .. " (#"..id..")", {128, 128, 128}, "^* " .. message)
 	  end
 	end)
 end
