@@ -4,13 +4,16 @@ RegisterCommand('createClaiming', function ()
     TriggerServerEvent('sv_createClaiming', playerCoords)
 end)
 
-RegisterNetEvent('cl_clamingSpawns', function (setClaimingSpawns, team)
-    while setClaimingSpawns do 
+RegisterNetEvent('cl_claimingSpawns', function (setClaimingSpawns, team)
+    print(team)
+    while setClaimingSpawns do
         Citizen.Wait(1)
-        if IsControlJustPressed(2, 47) then 
+        if IsControlJustReleased(2, 47) then
             local playerPed = PlayerPedId()
             local playerCoords = GetEntityCoords(playerPed)
-            print(playerCoords)
+            setClaimingSpawns = false
+            TriggerServerEvent('sv_setTeamSpawnLocation', playerCoords, team)
+            print(setClaimingSpawns)
         end
     end
 end)
