@@ -1,41 +1,48 @@
-function Draw3DText(x, y, z, scl_factor, text, red, green, blue, alpha)
-    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
-    local p = GetGameplayCamCoords()
-    local distance = GetDistanceBetweenCoords(p.x, p.y, p.z, x, y, z, 1)
-    local scale = (1 / distance) * 2
-    local fov = (1 / GetGameplayCamFov()) * 100
-    local scale = scale * fov * scl_factor
-    if onScreen then
-      SetTextScale(0.0, scale)
-      SetTextFont(0)
-      SetTextProportional(1)
-      SetTextColour(red, green, blue, alpha)
-      SetTextDropshadow(0, 0, 0, 0, 255)
-      SetTextEdge(2, 0, 0, 0, 150)
-      SetTextDropShadow()
-      SetTextOutline()
-      SetTextEntry("STRING")
-      SetTextCentre(1)
-      AddTextComponentString(text)
-      DrawText(_x, _y)
+local marker = lib.marker.new({
+  type = 27,
+  coords = Config.truckLocations.blipLocation,
+  color = { r= 255, g = 0, b = 0, a = 200},
+})
+
+local point = lib.points.new({
+  coords = Config.truckLocations.blipLocation,
+  distance = 200
+})
+
+function point:nearby()
+  marker:draw()
+
+  if self.currentDistance < 1.5 then 
+    if not lib.isTextUIOpen() then 
+      lib.showTextUI("[G] - Spawn Mule")
+    end
+
+    if IsControlJustPressed(2, 47) and GetVehiclePedIsIn(PlayerPedId(), false) == 0 then 
+      print(PlayerPedId())
+      TriggerServerEvent('sv_trucking:spawnMule', GetVehiclePedIsIn(PlayerPedId(), false))
+    end
+    else if lib.isTextUIOpen() then 
+      lib.hideTextUI()
     end
   end
+end
 
-local truckBlipLocation = Config.truckLocations.blipLocation
+function currentVehicle()
+  local currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false) 
+  local vehicleHash = GetEntityModel(currentVehicle)
+  local vehicle = GetDisplayNameFromVehicleModel(vehicleHash)
+  return vehicle
+end
 
-CreateThread(function ()
-  while true do
-    local playerCoords = GetEntityCoords(PlayerPedId())
-    Citizen.Wait(0)
-
-    local distance = GetDistanceBetweenCoords(truckBlipLocation.x, truckBlipLocation.y, truckBlipLocation.z, playerCoords.x, playerCoords.y, playerCoords.z, false)
-    DrawMarker(27, truckBlipLocation.x, truckBlipLocation.y, truckBlipLocation.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 1.5, 1.5, 255, 100, 0, 255, false, true, 2, true, nil, nil, false)
-    if distance < 2.5 then
-      Draw3DText(truckBlipLocation.x, truckBlipLocation.y, truckBlipLocation.z + 0.5, 1.0, "Spawn Mule", 255, 255, 255, 255)
-      if IsControlJustPressed(2, 47) then
-        TriggerServerEvent('trucking:spawnMule')
-      end
-    end
+function selectLocations()
+    local randomArea = math.random(#Config.dropoffLocations)
+    local randomLocations = math.random(#Config.dropoffLocations[randomArea])
+end
+RegisterCommand('trucking', function ()
+  print(currentVehicle())
+  if currentVehicle() == 'MULE' then 
+    TriggerServerEvent('sv_trucking:selectLocations', currentVehicle())
   end
 end)
+
 

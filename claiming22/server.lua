@@ -18,6 +18,7 @@ RegisterCommand('showTeams', function (source, args, raw)
     print(claimingStatus.spawnsActive.teamA)
     print(claimingStatus.spawnsActive.teamB)
 end)
+
 function checkLicense(source)
     local playerLicense = GetPlayerIdentifierByType(source, 'license')
     if playerLicense ~= allowedLicense then 

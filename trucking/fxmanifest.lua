@@ -2,15 +2,11 @@ games {'gta5'}
 
 fx_version 'cerulean'
 
+lua54 'yes'
 
 client_scripts {
   './client/*',
-  '@PolyZone/client.lua',
-  '@PolyZone/BoxZone.lua',
-  '@PolyZone/EntityZone.lua',
-  '@PolyZone/CircleZone.lua',
-  '@PolyZone/ComboZone.lua',
-  }
+}
 
 server_scripts {
   './server/*',
@@ -18,5 +14,6 @@ server_scripts {
 }
 
 shared_scripts {
-  './shared/config.lua'
+  './shared/config.lua',
+  '@ox_lib/init.lua',
 }
