@@ -44,5 +44,3 @@ RegisterCommand('trucking', function ()
     TriggerServerEvent('sv_trucking:selectLocations', currentVehicle())
   end
 end)
-
-

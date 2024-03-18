@@ -48,14 +48,13 @@ RegisterNetEvent('main_mining:checkDistance', function (rockIndex)
                     playerIdentifier
                 }, function (miningXp)
                     if not miningXp then 
-                        MySQL.insert('INSERT INTO jobs (identifier, player_name, mining_xp) VALUES (?, ?, ?)', {
+                        MySQL.insert('INSERT INTO jobs (identifier, miningXp) VALUES (?, ?, ?)', {
                             playerIdentifier,
-                            playerName,
                             rockData[rockIndex].xp
                         })
                     else
                         local updateXp = miningXp + rockData[rockIndex].xp
-                        MySQL.update('UPDATE jobs SET mining_xp = ? WHERE identifier = ?', {
+                        MySQL.update('UPDATE jobs SET miningXp = ? WHERE identifier = ?', {
                             updateXp,
                             playerIdentifier
                         })
@@ -63,15 +62,6 @@ RegisterNetEvent('main_mining:checkDistance', function (rockIndex)
                 end)
             end)
         end
-    end
-end)
-
-RegisterCommand('removeObjects', function ()
-    for k, objects in pairs(rockData) do
-        print(k, objects)
-        objectId = objects.entity
-        print(DoesEntityExist(objectId))
-        DeleteEntity(objectId)
     end
 end)
 

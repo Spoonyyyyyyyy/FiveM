@@ -11,3 +11,9 @@ client_scripts {
 shared_scripts {
     '@ox_lib/init.lua',
 }
+
+server_scripts {
+    'server.lua',
+    'connection.lua',
+    '@oxmysql/lib/MySQL.lua'
+}
