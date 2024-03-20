@@ -19,7 +19,7 @@ CreateThread(function ()
             if v.spawnTime == nil then 
                 break 
             end
-            if not v.spawned and math.floor((GetGameTimer() / 1000) - (v.spawnTime / 1000)) > v.respawnTime then
+            if not v.spawned or DoesObjectOfTypeExistAtCoords(v.coords.x, v.coords.y, v.coords.z, 1, GetHashKey('prop_test_rocks02'), 0) and math.floor((GetGameTimer() / 1000) - (v.spawnTime / 1000)) > v.respawnTime then
                 local spawnObject = CreateObject(GetHashKey(rockModel), rockCoords.x, rockCoords.y, rockCoords.z, true, true, false)
                 v.entity, v.spawned = spawnObject, true
             end
@@ -44,11 +44,11 @@ RegisterNetEvent('main_mining:checkDistance', function (rockIndex)
                 playerName,
                 rockData[rockIndex].label
             }, function ()
-                MySQL.scalar('SELECT mining_xp FROM jobs WHERE identifier = ?', {
+                MySQL.scalar('SELECT miningXp FROM jobs WHERE identifier = ?', {
                     playerIdentifier
                 }, function (miningXp)
                     if not miningXp then 
-                        MySQL.insert('INSERT INTO jobs (identifier, miningXp) VALUES (?, ?, ?)', {
+                        MySQL.insert('INSERT INTO jobs (identifier, miningXp) VALUES (?, ?)', {
                             playerIdentifier,
                             rockData[rockIndex].xp
                         })

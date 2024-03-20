@@ -4,26 +4,26 @@ AddEventHandler("playerConnecting", function (name, setKickReason, deferrals)
     local discord = identifiers[2]
     local fivem = identifiers[3]
     local license2 = identifiers[4]
-    if not isPlayerInDatabase(license, discord, fivem, license2) then
-        addPlayerToDataBase(license, discord, fivem, license2)
-    end
+    isPlayerInDatabase(license, discord, fivem, license2, source, name)
 end)
 
-function isPlayerInDatabase(license, discord, fivem, license2)
-    MySQL.scalar('SELECT fivem FROM users WHERE fivem = ?', {
-        fivem
-    }, function (value)
+function isPlayerInDatabase(license, discord, fivem, license2, playerSource, name)
+    MySQL.scalar.await('SELECT fivem FROM users WHERE fivem = ?', {fivem}, function (value)
         if value == nil then 
-            MySQL.insert.await("INSERT INTO `users` (license, discord, fivem, license2) VALUES (?, ?, ?, ?)", {
+            MySQL.Async.execute("INSERT INTO `users` (name, NetID, license, discord, fivem, license2) VALUES (?, ?, ?, ?, ?, ?)", {
+                name,
+                playerSource,
                 license,
                 discord,
                 fivem,
-                license2
+                license2,
+            })
+        else
+            MySQL.update.await("UPDATE `users` SET name = ?, NetID = ? WHERE fivem = ?", {
+                name,
+                playerSource,
+                fivem,
             })
         end
     end)
-end
-
-function addPlayerToDatabase(license, discord, fivem, license2)
-    
 end

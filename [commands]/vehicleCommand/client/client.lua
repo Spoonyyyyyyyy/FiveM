@@ -47,3 +47,13 @@ RegisterCommand('saveVehicle', function ()
     print(currentVehicle)
     print(primaryVehicleColour, secondaryVehicleColour)
 end)
+
+
+RegisterKeyMapping('lockVehicle', "Toggle Vehicle Lock", "KEYBOARD", "L")
+
+RegisterCommand("lockVehicle", function ()
+    local playerCoords = GetEntityCoords(PlayerPedId())
+    local closestVehicleEntity, closestVehicleCoords = lib.getClosestVehicle(playerCoords, 5.0, true)
+    print(closestVehicleEntity, closestVehicleCoords)
+    TriggerServerEvent('sv_lockVehicle', closestVehicleEntity, closestVehicleCoords)
+end)
