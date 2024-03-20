@@ -27,6 +27,3 @@ end
 function addPlayerToDatabase(license, discord, fivem, license2)
     
 end
-
-
-
