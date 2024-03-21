@@ -1,5 +1,11 @@
 Config = {}
 
+Config.hosts = {'license:0ea3bf0403ac5097276535391d9e40ebc3386d77'}
+
+Config.seatsActive = false
+Config.gameActive = false
+Config.gameType = nil
+
 Config.arenaPos = vector3(2800.123, -3698.778, 140.001)
 
 Config.arenaOptions = {

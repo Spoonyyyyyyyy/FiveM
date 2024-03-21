@@ -8,9 +8,11 @@ AddEventHandler("playerConnecting", function (name, setKickReason, deferrals)
 end)
 
 function isPlayerInDatabase(license, discord, fivem, license2, playerSource, name)
-    MySQL.scalar.await('SELECT fivem FROM users WHERE fivem = ?', {fivem}, function (value)
+    MySQL.scalar.await('SELECT fivem FROM users WHERE fivem = ?', {
+        fivem
+    }, function (value)
         if value == nil then 
-            MySQL.Async.execute("INSERT INTO `users` (name, NetID, license, discord, fivem, license2) VALUES (?, ?, ?, ?, ?, ?)", {
+            MySQL.insert("INSERT INTO `users` (name, NetID, license, discord, fivem, license2) VALUES (?, ?, ?, ?, ?, ?)", {
                 name,
                 playerSource,
                 license,
