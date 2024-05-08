@@ -1,4 +1,3 @@
-
 RegisterCommand('coords', function()
   local playerPed = PlayerPedId()
   local playerPos = GetEntityCoords(playerPed)

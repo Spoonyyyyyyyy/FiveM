@@ -29,3 +29,4 @@ function isPlayerInDatabase(license, discord, fivem, license2, playerSource, nam
         end
     end)
 end
+

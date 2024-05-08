@@ -1,3 +1,12 @@
+function table.contains(table, element)
+    for _, value in pairs(table) do
+      if value == element then
+        return true
+      end
+    end
+    return false
+  end
+
 function checkHost(source)
     local playerLicense = GetPlayerIdentifierByType(source, 'license')
     if table.contains(Config.hosts, playerLicense) then
@@ -5,6 +14,10 @@ function checkHost(source)
     else
         return false
     end
+end
+
+function enableGames()
+    TriggerClientEvent('cl_cyberbar:enablegames')
 end
 
 RegisterNetEvent('sv_cyberbar:command', function (command)
@@ -17,5 +30,12 @@ RegisterNetEvent('sv_cyberbar:command', function (command)
             type = 'error'
         })
     end
-    print('y')
+    if #command == 1 then 
+        local subCommand = command[1] 
+        if subCommands == enablegames then
+            enableGames()
+        end
+    elseif command[1] == 'gamemode' then
+        local gameFunction = command[2]
+    end
 end)
