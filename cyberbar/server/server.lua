@@ -7,7 +7,7 @@ function table.contains(table, element)
     return false
   end
 
-function checkHost(source)
+local function checkHost(source)
     local playerLicense = GetPlayerIdentifierByType(source, 'license')
     if table.contains(Config.hosts, playerLicense) then
         return true
@@ -16,26 +16,43 @@ function checkHost(source)
     end
 end
 
-function enableGames()
-    TriggerClientEvent('cl_cyberbar:enablegames')
+local function enableGames()
+    TriggerClientEvent('cl_cyberbar:enablegames', -1)
 end
 
-RegisterNetEvent('sv_cyberbar:command', function (command)
-    print(checkHost(source))
+RegisterNetEvent('sv_cyberbar:command', function(command)
+    local source = source
     if not checkHost(source) then 
-        return TriggerClientEvent('ox_lib:notify', source, {
+        TriggerClientEvent('ox_lib:notify', source, {
             title = 'Cyberbar',
             duration = 10000,
             description = "You do not have permission to do this command!",
             type = 'error'
         })
+        return
     end
-    if #command == 1 then 
-        local subCommand = command[1] 
-        if subCommands == enablegames then
-            enableGames()
-        end
-    elseif command[1] == 'gamemode' then
+    
+    local subCommand = command[1]
+    if subCommand == 'enablegames' then
+        enableGames(source)
+    elseif subCommand == 'gamemode' and #command == 2 then
         local gameFunction = command[2]
+        if Config.gamemode ~= gameFunction then 
+            Config.gamemode = gameFunction
+        end 
     end
 end)
+
+function enableGames(source)
+    if Config.seatsActive then 
+        print(GetPlayerName(source) .. " attempted to enable games whilist seats are acitve.")
+        TriggerClientEvent('ox_lib:notify', source, {
+            title = 'Cyberbar',
+            duration = 10000,
+            description = "Games have already been enabled.",
+            type = 'error'
+        })
+        return 
+    end
+    Config.seatsActive = true
+end

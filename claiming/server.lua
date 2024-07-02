@@ -7,7 +7,7 @@ end)
 RegisterNetEvent('claiming_claim')
 AddEventHandler('claiming_claim', function(playerName, distance)
     if distance <1 then 
-        if playerName == currentClaim then 
+        if playerName == currentClaim then
             return 
         end
 

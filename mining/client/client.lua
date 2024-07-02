@@ -21,7 +21,7 @@ CreateThread(function ()
                     local rockCoords = rockData.coords
                     local playerCoords = GetEntityCoords(PlayerPedId())
                     local rockIndex = i
-                    local distanceRock = GetDistanceBetweenCoords(rockCoords.x, rockCoords.y, rockCoords.z, playerCoords.x, playerCoords.y, playerCoords.z)
+                    local distanceRock = GetDistanceBetweenCoords(rockCoords.x, rockCoords.y, rockCoords.z, playerCoords.x, playerCoords.y, playerCoords.z, true)
                     print(rockIndex, distanceRock)
                     if distanceRock <3.0 then
                         RequestAnimDict('anim@heists@fleeca_bank@drilling')

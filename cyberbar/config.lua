@@ -2,11 +2,16 @@ Config = {}
 
 Config.hosts = {'license:0ea3bf0403ac5097276535391d9e40ebc3386d77'}
 
+Config.gamemode = nil
+
 Config.seatsActive = false
 Config.gameActive = false
 Config.gameType = nil
 
-Config.teams = {}
+Config.teams = {
+    Alpha = {},
+    Beta = {}
+}
 
 Config.arenaPos = vector3(2800.123, -3698.778, 140.001)
 
@@ -73,16 +78,16 @@ Config.arenaOptions = {
 }
 
 Config.seatMarkers = {
-    {seat = seatOne, team = 'Alpha', status = false, coords = vector3(325.3435, -904.7751, 29.25145)},
-    {seat = seatTwo, team = 'Alpha', status = false, coords = vector3(327.0339, -904.6738, 29.25145)},
-    {seat = seatThree, team = 'Alpha',status = false, coords = vector3(328.7007, -904.6966, 29.25145)},
-    {seat = seatFour, team = 'Alpha', status = false, coords = vector3(330.4021, -904.6966, 29.25145)},
-    {seat = seatFive, team = 'Alpha', status = false, coords = vector3(332.0874, -904.6988, 29.25145)},
-    {seat = seatSix, team = 'Beta', status = false, coords = vector3(337.5286, -903.5734, 29.25146)},
-    {seat = seatSeven, team = 'Beta', status = false, coords = vector3(339.2241, -903.5478, 29.25146)},
-    {seat = seatEight, team = 'Beta', status = false, coords = vector3(340.9525, -903.3763, 29.25146)},
-    {seat = seatNine, team = 'Beta', status = false, coords = vector3(342.65, -903.535, 29.25146)},
-    {seat = seatTen, team = 'Beta', status = false, coords= vector3(344.2519, -903.4109, 29.25146)}
+    {seatIndex = 1, team = 'Alpha', status = false, coords = vector3(325.3435, -904.7751, 29.25145)},
+    {seatIndex = 2, team = 'Alpha', status = false, coords = vector3(327.0339, -904.6738, 29.25145)},
+    {seatIndex = 3, team = 'Alpha',status = false, coords = vector3(328.7007, -904.6966, 29.25145)},
+    {seatIndex = 4, team = 'Alpha', status = false, coords = vector3(330.4021, -904.6966, 29.25145)},
+    {seatIndex = 5, team = 'Alpha', status = false, coords = vector3(332.0874, -904.6988, 29.25145)},
+    {seatIndex = 6, team = 'Beta', status = false, coords = vector3(337.5286, -903.5734, 29.25146)},
+    {seatIndex = 7, team = 'Beta', status = false, coords = vector3(339.2241, -903.5478, 29.25146)},
+    {seatIndext = 8, team = 'Beta', status = false, coords = vector3(340.9525, -903.3763, 29.25146)},
+    {seatIndex = 9, team = 'Beta', status = false, coords = vector3(342.65, -903.535, 29.25146)},
+    {seatIndex = 10, team = 'Beta', status = false, coords= vector3(344.2519, -903.4109, 29.25146)}
 }
 
 Config.weaponOptions = {
@@ -112,7 +117,7 @@ Config.weaponOptions = {
 
 
 
-cyberbar_presets = {
+Config.cyberbarPresets = {
     sandyairfield = {
         spawn1 = vector3(2111.755, 4787.62, 41.24374),
         spawn2 = vector3(1300.519, 1100.453, 105.6565),

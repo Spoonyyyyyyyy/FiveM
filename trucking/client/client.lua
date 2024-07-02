@@ -1,3 +1,5 @@
+local currentLocations = {}
+
 local marker = lib.marker.new({
   type = 27,
   coords = Config.truckLocations.blipLocation,
@@ -37,6 +39,7 @@ end
 function selectLocations()
     local randomArea = math.random(#Config.dropoffLocations)
     local randomLocations = math.random(#Config.dropoffLocations[randomArea])
+    print(randomLocations)
 end
 RegisterCommand('trucking', function ()
   print(currentVehicle())
