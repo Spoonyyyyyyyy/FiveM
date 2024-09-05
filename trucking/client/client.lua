@@ -29,21 +29,16 @@ function point:nearby()
   end
 end
 
-function currentVehicle()
+local function currentVehicle()
   local currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false) 
   local vehicleHash = GetEntityModel(currentVehicle)
   local vehicle = GetDisplayNameFromVehicleModel(vehicleHash)
   return vehicle
 end
 
-function selectLocations()
-    local randomArea = math.random(#Config.dropoffLocations)
-    local randomLocations = math.random(#Config.dropoffLocations[randomArea])
-    print(randomLocations)
-end
 RegisterCommand('trucking', function ()
   print(currentVehicle())
-  if currentVehicle() == 'MULE' then 
+  if currentVehicle() == 'MULE4' then 
     TriggerServerEvent('sv_trucking:selectLocations', currentVehicle())
   end
 end)

@@ -30,6 +30,10 @@ RegisterCommand('vehicleHash', function()
   print (vehicleHash)
 end)
 
+CreateThread(function ()
+  range = false
+end)
+
 RegisterCommand('tp', function(source, args)
   local playerPed = PlayerPedId()
   local x = tonumber(args[1])
@@ -37,5 +41,29 @@ RegisterCommand('tp', function(source, args)
   local z = tonumber(args[3])
   if x and y and z then 
     SetEntityCoords(playerPed, x, y, z, true, false, false, true)
+  end
+end)
+
+RegisterCommand('range', function(source, args)
+  local distance = args[1]
+  print(distance)
+  if not range then range = true else range = false end
+
+  while range do 
+    Citizen.Wait(1)
+    local playerCoords = GetEntityCoords(PlayerPedId())
+    DrawMarker(28, playerCoords.x, playerCoords.y, playerCoords.z, 0, 0,0 ,0 ,0 ,0 , 200.0, 200.0, 200.0, 255, 0, 0, 150, false, false, 0, false, nil, nil, false)
+  end
+end)
+
+RegisterCommand('staticRange', function(source, args)
+  local distance = args[1]
+  print(distance)
+  local playerCoords = GetEntityCoords(PlayerPedId())
+  if not range then range = true else range = false end
+
+  while range do 
+    Citizen.Wait(1)
+    DrawMarker(28, playerCoords.x, playerCoords.y, playerCoords.z, 0, 0,0 ,0 ,0 ,0 , 200.0, 200.0, 200.0, 255, 0, 0, 150, false, false, 0, false, nil, nil, false)
   end
 end)

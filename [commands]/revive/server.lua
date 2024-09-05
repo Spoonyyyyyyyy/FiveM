@@ -10,28 +10,3 @@ local bypassRoles = { -- Discord Role ID(s) that can bypass the revive wait time
 
 
 --- Code ---
-
-RegisterServerEvent("RPRevive:CheckPermission")
-AddEventHandler("RPRevive:CheckPermission", function()
-    local src = source
-    for k, v in ipairs(GetPlayerIdentifiers(src)) do
-        if string.sub(v, 1, string.len("discord:")) == "discord:" then
-            identifierDiscord = v
-        end
-    end
-
-    if identifierDiscord then
-        exports['discordroles']:isRolePresent(src, bypassRoles, function(hasRole, roles)
-            if not roles then
-                TriggerClientEvent("RPRevive:CheckPermission:Return", src, false)
-            end
-            if hasRole then
-                TriggerClientEvent("RPRevive:CheckPermission:Return", src, true)
-            else
-                TriggerClientEvent("RPRevive:CheckPermission:Return", src, false)
-            end
-        end)
-    else
-        TriggerClientEvent("RPRevive:CheckPermission:Return", src, false)
-    end
-end)
